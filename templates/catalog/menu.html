@@ -1,0 +1,21 @@
+{% extends 'homepage/base.html'%}
+{% load i18n %}
+{% load static %}
+{%load djmoney%}
+{% money_localize money on %}
+
+{% block content %}
+        <h2>{%trans "Our Menu" %} </h2> 
+    
+        {% for Product in products_array%}
+        
+            <img src="{{ Product.product.image.url }}" style="width: 10%;">
+
+            <h5> {% trans Product.product.name %}</h5>
+            <h5> {% trans Product.product.category.name %}</h5>
+            <h5 > {% trans Product.product.description %} </h5>
+            <h6>{%trans "Sold:"%} {{Product.product.sold_number}}</h6>
+            <h6> {% money_localize Product.product.base_price 'VND' %} </h6>
+
+        {% endfor %}
+{% endblock %}>

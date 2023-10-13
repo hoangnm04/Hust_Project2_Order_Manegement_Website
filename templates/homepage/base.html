@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="shortcut icon" href="{% static 'homepage/images/favicon.png' %}" type="">
+  <title> HyNiu Food & Drink </title>
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/css/bootstrap.css' %}" />
+    <!-- Custom styles for this template -->
+    <link href="{% static 'homepage/css/style.css' %}" rel="stylesheet" />
+    
+{% block cssblock %}
+{% endblock %}
+
+</head>
+<body>
+
+  <h2> Food & Drink</h2>
+
+  <li ><a class="black-text" href="{% url 'home:home' %}"> {% trans "HOME" %}</a> </li>
+  <li ><a class="black-text" href="{% url 'home:category' %}"> {% trans "MENU" %}</a></li>
+  <li ><a class="black-text" href=""> {% trans "ABOUT" %}</a></li>
+  {% get_current_language as LANGUAGE_CODE %}
+  {% get_available_languages as LANGUAGES %}
+  {% get_language_info_list for LANGUAGES as languages %}
+  <a class="listlink" href="{% url 'vi:home' %}">
+    <img src="/static/homepage/images/vi.png" class="imagesflag">
+    <a class="black-text" href="{% url 'vi:home' %}" class="trans-button"> VI </a> 
+  <a class="listlink" href="{% url 'en:home' %}">   &emsp;
+    <img src="/static/homepage/images/en.png" class="imagesflag">
+    <a class="black-text" href="{% url 'en:home' %}" class="trans-button"> EN </a>  
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>
